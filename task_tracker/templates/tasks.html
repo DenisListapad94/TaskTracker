@@ -1,0 +1,10 @@
+{% extends 'C:\Users\Denis\PycharmProjects\Task_Tracker_py54\base\templates\base.html' %}
+{% block content %}
+     <h3>tasks </h3>
+        <ul>
+            {%  for task in tasks  %}
+            <li>{{ task.title }} {{ task.description }} {{ task.priority }} </li>
+            {% endfor %}
+        </ul>
+
+{% endblock %}

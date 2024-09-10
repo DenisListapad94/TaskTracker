@@ -1,4 +1,5 @@
 from django.db import models
+from custom_user.models import CustomUser
 
 STATUS_CHOICES = [
     ("op", "Open"),
@@ -20,3 +21,18 @@ class Task(models.Model):
     height_level = models.PositiveIntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    project = models.ForeignKey(
+        to="Project",
+        on_delete=models.CASCADE,
+        related_name="tasks",
+        null=True
+    )
+    user = models.ForeignKey(
+        to=CustomUser,
+        on_delete=models.CASCADE,
+        related_name="tasks",
+        null=True
+    )
+
+    def __str__(self):
+        return self.title

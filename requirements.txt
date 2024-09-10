@@ -4,4 +4,6 @@ sqlparse==0.5.1
 psycopg2-binary==2.9.9
 django-extensions==3.2.3
 ipython==8.27.0
+pillow==10.4.0
+
 
