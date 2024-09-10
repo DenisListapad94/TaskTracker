@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+     <h3>title  description  </h3>
+        <ul>
+            {%  for dt in data  %}
+            <li>{{ dt.title }} {{ dt.description }}</li>
+            {% endfor %}
+        </ul>
+
+{% endblock %}
+
