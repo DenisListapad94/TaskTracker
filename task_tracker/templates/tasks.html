@@ -1,10 +1,35 @@
 {% extends 'C:\Users\Denis\PycharmProjects\Task_Tracker_py54\base\templates\base.html' %}
 {% block content %}
      <h3>tasks </h3>
-        <ul>
-            {%  for task in tasks  %}
-            <li>{{ task.title }} {{ task.description }} {{ task.priority }} </li>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">task</th>
+      <th scope="col">tag</th>
+      <th scope="col">comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%  for task in tasks  %}
+    <tr>
+      <th scope="row">{{task.id}}</th>
+      <td>{{task.title}}</td>
+        <td>
+            {% for tag in task.tags.all %}
+                <p>{{tag.name}}
             {% endfor %}
-        </ul>
+        </td>
+      <td>
+          {% for comment in task.comments.all %}
+                <p>{{comment.title}}
+            {% endfor %}
+      </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}

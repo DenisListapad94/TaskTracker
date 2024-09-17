@@ -4,9 +4,8 @@ from config.settings import BASE_DIR
 
 
 def show_all_tasks(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.prefetch_related("comments__task").prefetch_related("tags__tasks").select_related("project").all()
     context = {
         "tasks" : tasks,
-        "base_dir": BASE_DIR
     }
     return render(request,"tasks.html",context=context)

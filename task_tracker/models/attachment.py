@@ -1,14 +1,14 @@
 from django.db import models
 
+from base.models import BaseModel
 from custom_user.models import CustomUser
 
 
-class Attachment(models.Model):
+class Attachment(BaseModel,models.Model):
+
     file_name = models.CharField(max_length=64, null=True)
     file = models.FileField(null=True)
     image = models.ImageField(null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     user = models.ForeignKey(
         to=CustomUser,
@@ -25,3 +25,6 @@ class Attachment(models.Model):
 
     def __str__(self):
         return self.file_name
+
+    class Meta:
+        db_table = "attachment"

@@ -1,10 +1,10 @@
 from django.db import models
 
+from base.models import BaseModel
 
-class Tag(models.Model):
+
+class Tag(BaseModel,models.Model):
     name = models.CharField(max_length=64)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     tasks = models.ManyToManyField(
         to="Task",
         related_name="tags"
@@ -12,3 +12,6 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        db_table = "tag"
