@@ -1,5 +1,11 @@
 {% extends 'C:\Users\Denis\PycharmProjects\Task_Tracker_py54\base\templates\base.html' %}
+{% load cache %}
+
+
+
 {% block content %}
+
+{% cache 30 sidebar %}
      <h3>tasks </h3>
 
     <table class="table">
@@ -31,5 +37,7 @@
     {% endfor %}
   </tbody>
 </table>
+{% endcache %}
 
 {% endblock %}
+
