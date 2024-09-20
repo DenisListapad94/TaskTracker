@@ -55,6 +55,10 @@ class Task(BaseModel,models.Model):
         null=True,
         verbose_name="пользователь"
     )
+    photo = models.ImageField(
+        upload_to="tasks",
+        null=True,
+    )
 
     def __str__(self):
         return self.title

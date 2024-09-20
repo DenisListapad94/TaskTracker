@@ -1,0 +1,14 @@
+{% extends 'C:\Users\Denis\PycharmProjects\Task_Tracker_py54\base\templates\base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<form enctype="multipart/form-data"  method = "POST">
+
+    {% csrf_token %}
+    {{form | crispy}}
+
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

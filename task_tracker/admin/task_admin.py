@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from task_tracker.models import Task, Tag, Comment, Project, Attachment
+from django.utils.safestring import mark_safe
+
 
 
 class CommentInline(admin.StackedInline):
@@ -12,11 +14,14 @@ class CommentInline(admin.StackedInline):
 class TagMembershipInline(admin.TabularInline):
     model = Tag.tasks.through
 
-
+@admin.display(description='фото')
+def get_html_photo(objects):
+    if objects.photo:
+        return mark_safe(f'<img src={objects.photo.url} width=50>')
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = [ "id","title", "description","status","priority","view_created_at"]
+    list_display = [ "id","title", "description","status","priority",get_html_photo,"photo"]
     list_display_links = ["title"]
     # fields = ["title", "description",("status","priority")]
     exclude = ["height_level"]
@@ -31,6 +36,8 @@ class TaskAdmin(admin.ModelAdmin):
     @admin.action(description='Create close status')
     def create_close_status(modeladmin, request, queryset):
         queryset.update(status='cl')
+
+
 
     inlines = [
         CommentInline,

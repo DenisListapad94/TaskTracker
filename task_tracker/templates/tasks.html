@@ -5,7 +5,6 @@
 
 {% block content %}
 
-{% cache 30 sidebar %}
      <h3>tasks </h3>
 
     <table class="table">
@@ -15,6 +14,7 @@
       <th scope="col">task</th>
       <th scope="col">tag</th>
       <th scope="col">comment</th>
+        <th scope="col">photo</th>
     </tr>
   </thead>
   <tbody>
@@ -32,12 +32,18 @@
                 <p>{{comment.title}}
             {% endfor %}
       </td>
+       <td>
+           {% if task.photo %}
+                    <img style="max-height: 100px" src="{{ task.photo.url }}"/>
+            {% endif %}
+
+      </td>
+
     </tr>
 
     {% endfor %}
   </tbody>
 </table>
-{% endcache %}
 
 {% endblock %}
 
