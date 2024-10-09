@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     "crispy_bootstrap5",
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 AUTH_USER_MODEL = 'custom_user.CustomUser'
@@ -165,3 +167,15 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MEDIA_ROOT = 'media_files'
 MEDIA_URL = 'media/'
+
+# rest framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
