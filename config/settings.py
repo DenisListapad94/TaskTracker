@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-*-3icfxj_=rn0b_x81d=7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 # Application definition
 
@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     "crispy_bootstrap5",
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 ]
 
 AUTH_USER_MODEL = 'custom_user.CustomUser'
@@ -98,10 +99,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get("DB_NAME", "tasktracker"),
-        'HOST': os.environ.get("DB_HOST", "localhost"),
-        'USER': os.environ.get("DB_USER", "denis"),
-        'PASSWORD': os.environ.get("DB_PASSWORD", 1234),
+        'HOST': os.environ.get("DB_HOST", "postgres"),
+        'USER': os.environ.get("DB_USER", "postgres"),
+        'PASSWORD': os.environ.get("DB_PASSWORD", "postgres"),
         'PORT': os.environ.get("DB_PORT", 5432),
+        'TEST': {
+            'NAME': os.environ.get("DB_TEST_NAME", "task_tracker_test"),
+        }
     }
 }
 
@@ -157,7 +161,7 @@ CACHES = {
     #     "LOCATION": "unique-snowflake",
     # }
 }
-#crispy
+# crispy
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -176,6 +180,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication'
+        # 'rest_framework.authentication.TokenAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }

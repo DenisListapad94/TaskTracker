@@ -9,8 +9,8 @@ from custom_user.views import (
 )
 
 urlpatterns = [
-    path('registration/', csrf_exempt(RegistrationView.as_view())),
-    path('login/', csrf_exempt(LoginView.as_view())),
-    path('logout/', csrf_exempt(own_logout)),
+    path('registration/', csrf_exempt(RegistrationView.as_view()), name="register"),
+    path('login/', csrf_exempt(LoginView.as_view()), name="login"),
+    path('logout/', csrf_exempt(own_logout), name="logout"),
     path('me/', csrf_exempt(UserInfoView)),
 ]

@@ -10,8 +10,8 @@ from task_tracker.models import Task
 
 
 class TaskList(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 

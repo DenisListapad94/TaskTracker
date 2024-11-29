@@ -8,7 +8,7 @@ from base.views import (
 from base.views.main_page_view import some_view
 
 urlpatterns = [
-    path('', MainPageView.as_view()),
+    path('', MainPageView.as_view(),name="home"),
     path('login/', LoginTemplateView.as_view()),
     path('view/',some_view)
 ]

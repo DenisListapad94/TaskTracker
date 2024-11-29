@@ -5,7 +5,6 @@ from django.views.generic import TemplateView
 class MainPageView(TemplateView):
     template_name = 'base.html'
 
-
 class SomeContent:
     def __init__(self, title, description):
         self.title = title
