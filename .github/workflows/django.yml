@@ -4,7 +4,12 @@ on: [workflow_dispatch, push]
 jobs:
     test-lint:
       name: Test and Lint
-      runs-on: ubuntu-20.04
+      strategy:
+        max-parallel: 4
+        matrix:
+            python-version: [ 3.9, 3.11, 3.12,3.13 ]
+            os: [ ubuntu-latest,windows-latest ]
+      runs-on: ${{matrix.os}}
   
       services:
         postgres:
@@ -29,11 +34,11 @@ jobs:
   
       steps:
         - uses: actions/checkout@v2
-  
-        - name: Set up Python 3.11
-          uses: actions/setup-python@v2
+
+        - name: Set up Python ${{ matrix.python-version }}
+          uses: actions/setup-python@v3
           with:
-            python-version: "3.11"
+            python-version: ${{ matrix.python-version }}
   
         - name: Install dependencies
           run: |
