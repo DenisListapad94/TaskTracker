@@ -10,6 +10,7 @@ jobs:
         postgres:
           image: postgres:latest
           env:
+            POSTGRES_HOST_AUTH_METHOD: trust
             DB_NAME: test_db
             DB_USER: user
             DB_PASSWORD: password
@@ -24,6 +25,7 @@ jobs:
       env:
         DATABASE_URL: postgres://user:password@localhost:5432/test_db
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        POSTGRES_HOST_AUTH_METHOD: trust
   
       steps:
         - uses: actions/checkout@v2
