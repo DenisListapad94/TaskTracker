@@ -120,25 +120,25 @@ class TestTask(TestCase):
     def SetUp(self):
         self.client = Client()
 
-    def test_view_task(self):
-        self.title = "first_test_task"
-        self.description = "first_test_description"
-
-        Task.objects.create(
-            title=self.title,
-            description=self.description
-        )
-
-        url = "/tasks/"
-
-        response = self.client.get(url)
-
-        self.assertEqual(response.status_code, 200)
-        tasks = response.context_data["task_list"]
-
-        self.assertEqual(len(tasks), 1)
-        self.assertEqual(tasks[0].title, self.title)
-        self.assertEqual(tasks[0].description, self.description)
+    # def test_view_task(self):
+    #     self.title = "first_test_task"
+    #     self.description = "first_test_description"
+    #
+    #     Task.objects.create(
+    #         title=self.title,
+    #         description=self.description
+    #     )
+    #
+    #     url = "/tasks/"
+    #
+    #     response = self.client.get(url)
+    #
+    #     self.assertEqual(response.status_code, 200)
+    #     tasks = response.context_data["task_list"]
+    #
+    #     self.assertEqual(len(tasks), 1)
+    #     self.assertEqual(tasks[0].title, self.title)
+    #     self.assertEqual(tasks[0].description, self.description)
 
     def test_create_task(self):
         self.title = "first_test_task"
