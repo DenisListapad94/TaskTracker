@@ -11,9 +11,9 @@ jobs:
           image: postgres:latest
           env:
             POSTGRES_HOST_AUTH_METHOD: trust
-            DB_NAME: test_db
-            DB_USER: user
-            DB_PASSWORD: password
+            DB_NAME: tasktracker
+            DB_USER: denis
+            DB_PASSWORD: 1234
           ports:
             - 5432:5432
           options: >-
@@ -23,17 +23,17 @@ jobs:
             --health-retries 5
   
       env:
-        DATABASE_URL: postgres://user:password@localhost:5432/test_db
+        DATABASE_URL: postgres://denis:1234@localhost:5432/tasktracker
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         POSTGRES_HOST_AUTH_METHOD: trust
   
       steps:
         - uses: actions/checkout@v2
   
-        - name: Set up Python 3.12
+        - name: Set up Python 3.11
           uses: actions/setup-python@v2
           with:
-            python-version: '3.12'
+            python-version: "3.11"
   
         - name: Install dependencies
           run: |
