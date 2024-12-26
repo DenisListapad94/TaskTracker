@@ -100,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get("DB_NAME", "tasktracker"),
         'HOST': os.environ.get("DB_HOST", "localhost"),
-        'USER': os.environ.get("DB_USER", "denis"),
+        'USER': os.environ.get("DB_USER", "postgres"),
         'PASSWORD': os.environ.get("DB_PASSWORD", "1234"),
         'PORT': os.environ.get("DB_PORT", 5432),
         'TEST': {
